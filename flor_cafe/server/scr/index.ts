@@ -1,4 +1,3 @@
-import './util/module-alias';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { Server } from 'http';
@@ -7,7 +6,7 @@ import router from './routes';
 export class SetupApplication {
   private server?: Server;
 
-  constructor(private port = 3000, public app = express()) { }
+  constructor(private port?: string | '3333', public app = express()) { }
 
   public init(): void {
     this.setupExpress();
