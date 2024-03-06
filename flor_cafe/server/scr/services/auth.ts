@@ -1,26 +1,40 @@
-// import jsonwebtoken from "jsonwebtoken";
-// import { database } from "../fakeDatabase";
-
-export class AuthenticateService {
-  public async authenticate(user: string, password: string) {
-    // Criaria também um Repository para fazer requisições ao banco,
-    // mas nesse caso, criei um banco de dados fake para simular.
-
-    // const query = database.find((userDB) => {
-    //   if (userDB.name === user && userDB.password === password) {
-    //     return userDB;
-    //   }
-    // })
-
-    // if (query) {
-    //   const { id, cpf, birthDate, name } = query;
-    //   const expiresIn = '1h'; // 1 hora
-
-    //   const tokenJWT = jsonwebtoken.sign({ id, cpf, birthDate, name }, process.env.TOKEN_SECRET!, { expiresIn })
-
-    //   return { tokenJWT, expiresIn };
-    // }
-
-    throw new Error("User or password incorrect.");
-  };
+import { servicesResponseType } from '../types/response';
+import bcrypt from 'bcrypt';
+import md5 from 'blueimp-md5';
+import jwt from 'jsonwebtoken';
+import config from '../configs/config';
+import { ErrorHandler } from '../handlers/errorHandler';
+import db from '../knex';
+import { RequestDB, User } from '../types/database';
+interface IAuthService {
+  token: string;
 }
+
+export const authService = async (data: {
+  email: string;
+  senha: string;
+}): Promise<servicesResponseType<IAuthService>> => {
+  // const user = await db<User>('use_usuario').select('*').where({
+  //   email: data.email,
+  // });
+
+  // if (!user) return ErrorHandler.unauthorizedError();
+
+  // const match = await bcrypt.compare(data.senha, user[0].senha!);
+
+  // if (!match) return ErrorHandler.unauthorizedError();
+
+  // const payload = {
+  //   email: user[0].email,
+  //   versao: md5(`${user[0].usuario_id}-${user[0].email}-${user[0].senha}`),
+  // };
+
+  return {
+    data: {
+      token: '464864',
+      // token: jwt.sign(payload, config.jwt.secret, {
+      //   expiresIn: config.jwt.expires,
+      // }),
+    },
+  };
+};

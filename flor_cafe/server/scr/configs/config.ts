@@ -1,16 +1,30 @@
-import dotenv from "dotenv";
-import path from "path";
+import dotenv from 'dotenv';
+import path from 'path';
 const envPath = path.resolve(__dirname, '../../../.env');
 
 dotenv.config({ path: envPath });
 
-export const config =  {port:getEnv("PORT_START")};
+export default {
+  port: getEnv('PORT_START'),
+  knex: {
+    client: 'pg',
+    connection: {
+      host: getEnv('DB_HOST'),
+      port: parseInt(getEnv('DB_PORT')),
+      user: getEnv('DB_USER'),
+      password: getEnv('DB_PASS'),
+      database: getEnv('DB_DATABASE'),
+      ssl: { rejectUnauthorized: false },
+    },
+  },
+};
 
-function getEnv(name:string) {
-    if(name){
-        return process.env[name];
-    }else{
-        console.log(`ERRO AO SOLICITAR ${name}`);
-        return '';
-    }
+function getEnv(name: string): string {
+  const temp = process.env[name];
+  if (temp) {
+    return temp;
+  } else {
+    console.log(`ERRO AO SOLICITAR ${name}`);
+    return '';
+  }
 }

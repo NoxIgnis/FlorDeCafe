@@ -1,21 +1,21 @@
 <div class="background-page">
-    <nav-bar/>
+  <nav-bar />
   <div class="content">
-    <section [formGroup]="loginForm" class="retangulo"> 
+    <section [formGroup]="loginForm" class="retangulo">
       <h3 class="label-login">LOGIN</h3>
-      <section class = "section-form">
+      <section class="section-form">
         <form class="form-login">
           <label for="email">Email</label>
-          <input id="email" formControlName="email"/>
+          <input id="email" formControlName="email" />
           <label for="password">Password</label>
-          <input id="password" type="password" formControlName="password"/>
+          <input id="password" type="password" formControlName="password" />
           <a href="#" class="cad">Cadastre-se</a>
           <section class="btn-login">
             <submit-button
-            btn-text="Submit" 
-            (submit) = "loginSubmit()"
-            [disabled]="!loginForm.valid"
-            [loading]="loading()"
+              btn-text="Submit"
+              (submit)="onSubmit()"
+              [disabled]="!loginForm.valid"
+              [loading]="loading()"
             />
           </section>
         </form>

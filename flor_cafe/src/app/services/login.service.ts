@@ -4,17 +4,21 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login.interface';
 // import { LoginResponse } from '../interfaces/login.interface'
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-  private _loginEndpoint = "localhost:3000/login";
-  constructor(private http: HttpClient) {
-    
-   }
+  private _loginEndpoint = 'http://localhost:5000/login';
+  constructor(private http: HttpClient) {}
 
-   sendData({ email, password }: { email: string; password: string; }): Observable<LoginResponse>{
-      const data = {email,password};
-
-      return this.http.post<LoginResponse>(this._loginEndpoint, data);
-   }
+  sendData({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }): Observable<LoginResponse> {
+    const data = { email, password };
+    console.log(data);
+    return this.http.post<LoginResponse>(this._loginEndpoint, data);
+  }
 }
