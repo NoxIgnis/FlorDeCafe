@@ -1,18 +1,22 @@
 <nav class="navbar">
-    <div class="logo">
-      <img ngSrc="../../assets/Lg.png"  width="286" height="50"/>
-    </div>
-    <ul class="menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Espaço</a></li>
-      <li><a href="#">Sobre</a></li>
-      <li><a href="#">Contato</a></li>
-    </ul>
-    <div class="login">
-      <a routerLink="/login"
+  <div class="logo">
+    <img ngSrc="../../assets/Lg.png" width="286" height="50" />
+  </div>
+  <ul class="menu">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Espaço</a></li>
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  @if(!login){
+  <div class="login">
+    <a
+      routerLink="/login"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}"
+      [routerLinkActiveOptions]="{ exact: true }"
       ariaCurrentWhenActive="page"
-      >Login</a>
-    </div>
+      >Login</a
+    >
+  </div>
+  }
 </nav>

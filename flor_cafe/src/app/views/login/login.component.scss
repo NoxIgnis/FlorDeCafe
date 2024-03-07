@@ -1,4 +1,5 @@
 .background-page {
+
   background-image: url('../../../assets/bg.png') !important;
   // background-color: black !important;
   background-size: cover;
@@ -6,6 +7,9 @@
   height: 100dvh !important;
   width: 100%; // Ajuste conforme necessário
 
+  .nav-login{
+    margin-right: calc((75% - 286px) / 2);
+  }
   .content {
     display: flex;
     flex-direction: row;
