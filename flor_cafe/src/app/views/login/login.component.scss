@@ -1,7 +1,6 @@
 .background-page {
 
   background-image: url('../../../assets/bg.png') !important;
-  // background-color: black !important;
   background-size: cover;
   background-position: center;
   height: 100dvh !important;
@@ -48,6 +47,12 @@
             color: #fff;
             font-size: 1em;
             margin-top: 2em;
+          }
+          .error-login{
+            color: #f88181;
+            font-family: "IBM+Plex+Sans", sans-serif;
+            font-size: 0.8em;
+            margin-top: 0.4em;
           }
           @media (min-width: 1080px){
             .form-login{

@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,11 @@ import { LoginService } from '../../services/login.service';
 export class LoginComponent {
   loginForm!: FormGroup;
   loading = signal(false);
+  validatePassword = true;
+  emailPassword = true;
+  variant = '';
 
-  constructor(private service: LoginService) {
+  constructor(private service: LoginService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -32,19 +36,28 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.loading.set(true);
     if (this.loginForm.valid) {
+      this.loading.set(true);
       this.service
         .sendData({
           email: this.loginForm.value.email,
           password: this.loginForm.value.password,
         })
         .subscribe({
-          next: () => {
+          next: (resp) => {
+            console.log(resp.data.token);
+            if (resp.data.token) {
+              this.router.navigate(['/']);
+            }
             this.loginForm.reset();
             this.loading.set(false);
           },
         });
+      this.validatePassword = !this.loginForm.controls['password'].errors;
+      this.emailPassword = !this.loginForm.controls['email'].errors;
+    } else {
+      this.validatePassword = !this.loginForm.controls['password'].errors;
+      this.emailPassword = !this.loginForm.controls['email'].errors;
     }
   }
 }
