@@ -7,7 +7,7 @@ import { LoginResponse } from '../interfaces/login.interface';
   providedIn: 'root',
 })
 export class LoginService {
-  private _loginEndpoint = 'http://localhost:5000/login';
+  private _loginEndpoint = 'http://localhost:3000/login';
   constructor(private http: HttpClient) {}
 
   sendData({

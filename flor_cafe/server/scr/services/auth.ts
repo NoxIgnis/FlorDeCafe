@@ -12,7 +12,7 @@ interface IAuthService {
 
 export const authService = async (data: {
   email: string;
-  senha: string;
+  password: string;
 }): Promise<servicesResponseType<IAuthService>> => {
   // const user = await db<User>('use_usuario').select('*').where({
   //   email: data.email,
